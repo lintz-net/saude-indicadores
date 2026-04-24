@@ -141,27 +141,4 @@ O arquivo de saída contém:
 
 ```bash
 mvn test
-```
 
----
-
-## Notas para integração com Angular 19
-
-Os serviços foram estruturados para fácil portabilidade para uma API REST:
-
-- `UnificacaoService` → Controller REST (`/api/cidadaos`)
-- `CsvAcompanhamentoService` → Endpoint de upload
-- `XlsxIndicadorService` → Endpoint de upload múltiplo
-- `ExportacaoService` → Endpoint de download
-- `Cidadao` POJO → DTO compatível com `@JsonProperty` Jackson
-
-Sugestão de endpoints:
-```
-POST   /api/upload/csv          → carrega o CSV principal
-POST   /api/upload/indicador    → adiciona um XLSX de indicador
-GET    /api/cidadaos            → lista unificada (com filtros via query param)
-GET    /api/cidadaos/{id}       → detalhe de um cidadão
-GET    /api/exportar/csv        → download do CSV consolidado
-GET    /api/microareas          → lista de microáreas disponíveis
-GET    /api/indicadores         → tipos de indicadores carregados
-```
